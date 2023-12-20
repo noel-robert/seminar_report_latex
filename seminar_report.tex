@@ -1,0 +1,94 @@
+\documentclass[a4paper]{report}   % To indicate fontsize, page type and document type
+\setlength{\headheight}{15pt}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyphenat}
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\addbibresource{References.bib}
+
+
+\renewcommand{\baselinestretch}{1.5}    % To make the linespacing in the document 1.5cm
+
+\usepackage{amsmath, epsfig, graphicx, ltablex, tabularx, setspace, url, floatflt, caption, float, comment, fancyhdr, geometry, subfigure, amssymb, color, indentfirst, booktabs, array}
+\usepackage[breaklinks, hidelinks]{hyperref}    % for jumping to specific page
+
+\DeclareMathOperator*{\esup}{argmax}
+%  'amsmath'   --   for [equation*]
+%  'graphicx'    --   To include figures
+%  'color'          --   To include texts with color and also with different fonts
+%  'geometry'   --   To change page properties
+%  'fancyhdr'    --   To make the pages look good by including special effects
+%  'subfigure'   --   To include two figures in a single figure
+% INCLUDE subfigure after fancyhdr since now it is not working because packages are not updated fully.
+
+\geometry{left=1.25in,right=1in}
+\geometry{top=1.1in,bottom=1in}       % page geometry
+
+\setcounter{secnumdepth}{3}           % to get subsubsections numbered
+\setcounter{tocdepth}{3}              % to get subsubsections in the table of contents
+
+\begin{document}
+%-----COVER PAGE-----%
+\include{CoverPage}
+%-----COVER PAGE-----%
+
+%-----CERTIFICATE-----%
+\thispagestyle{empty}
+\include{CertificatePage}
+%-----CERTIFICATE-----%
+
+\pagenumbering{roman}   % to get page numbers for initial pages in terms of roman numbers
+%-----ACKNOWLEDGEMENTS-----%
+\include{0Acknowledgement}
+%-----ACKNOWLEDGEMENTS-----%
+
+%-----ABSTRACT-----%
+\include{0Abstract}
+%-----ABSTRACT-----%
+
+\phantomsection
+\tableofcontents
+
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+% \clearpage
+% % \addcontentsline{toc}{chapter}{List of Tables}
+% % \listoftables
+% \clearpage
+
+\phantomsection
+\clearpage
+\addcontentsline{toc}{chapter}{Nomenclature}
+\include{0Nomenclature}
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}                       % Sets fancy header and footer
+\fancyfoot{}                            % Delete current footer settings
+\fancyhead{}                            % Delete current footer settings
+\rhead{TDLGC}		                    % Write seminar topic here
+\lfoot{Dept: of {Computer Science and Engineering}}
+\rfoot{ \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\pagenumbering}{}
+
+\include{1Introduction}
+\include{2Methodology}
+\include{3Conclusion}
+
+%-----include as many chapters as needed-----%
+
+%-----REFERENCES-----%
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\printbibliography[title={References}]
+%-----REFERENCES-----%
+
+\end{document}
