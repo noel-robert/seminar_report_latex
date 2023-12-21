@@ -48,7 +48,7 @@ Trust network is a graph that represents the trust relationship among users. Som
 \indent The Trust network can also be represented in the form of a weighted graph where edge weight between user $u_i$ and user $u_j$ is set to 1 if $u_i$ trusts $u_j$, else it is set to 0.
 
 \subsection{Graph Representation of Users}
-User set U is mapped onto a weighted graph G(U,E,W)\cite*{9775081, oulu_tdlgc}, where E represents set of edges linking users and W represents calculated similarities between different users in U. To calculate the edge weights between users, a combination of Pearson correlation coefficient and the trust network previously obtained is utilized\cite*{9775081}, as given in the below formula:
+User set U is mapped onto a weighted graph G(U,E,W)\cite*{9775081, oulu_tdlgc}, where E represents set of edges linking users and W represents similarities between different users in U. To calculate the edge weights between users, a combination of Pearson correlation coefficient and the trust network that was previously obtained is utilized\cite*{9775081}, as given in the below formula:
 \begin{equation*} w(u_{i},u_{j})=\alpha.Tr\left({u_{i},u_{j}}\right)+\left({1-\alpha }\right).sim\left({u_{i},u_{j}}\right). \tag{3}\end{equation*}
 where Tr($u_i$,$u_j$) denotes the trust score between users $u_i$ and $u_j$.
 $\alpha$ is the control parameter that adjusts contributions of trust Tr($u_i$,$u_j$) and similarity sim($u_i$,$u_j$) values.
@@ -63,7 +63,7 @@ Prediction for ratings of food $f_k$ based on user $u_i$ is calculated as given 
 \begin{align*} p_{k}^{u-based}\left({u_{i}}\right)\!=\!\bar {r}\left({u_{i}}\right)+\frac {\sum _{u_{j}\in C_{i}}{w(u_{i},u_{j}).\left({r_{k}\left({u_{j}}\right)\!-\!\bar {r}\left({u_{j}}\right)}\right)}}{\sum _{u_{j}\in C_{i}}\left |{w_{(}u_{i},u_{j})}\right |}. \\\tag{4}\end{align*}
 where w($u_i$, $u_j$) indicates weights between users $u_i$ and $u_j$. $C_i$ represents community to which user $u_i$ belongs to.
 \\
-Fig 2.2\cite*{9775081} shows how user-based rating prediction is being done for a sample dataset with nine users\cite*{9775081}. User-food matrix containing rating for food given by user is used to find similarity between users. This, along with the trust network between users is used to build a graph representation of the users using which users are clustered. This is used to predict ratings of previously unseen food item with respect to each user.
+Fig 2.2\cite*{9775081} shows how user-based rating prediction is being done for a sample dataset having nine users\cite*{9775081}. User-food matrix containing rating for food given by user is used to find similarity between users. This, along with the trust network between users is used to build a graph representation of the users using which users are clustered. This is used to predict ratings of previously unseen food item with respect to each user.
 \begin{figure}[htp]
     \centering
     \includegraphics[scale=0.80]{overall_schema_user_based_rating_prediction.png}
@@ -90,7 +90,7 @@ Food clustering based on ingredients is performed by utilizing the Bidirectional
 By utilizing contextualized embeddings from previous step, ingredients present in a food can be identified. Similar food items are in close proximity to each other in the vector space and they are assumed to share some ingredients\cite*{9775081, oulu_tdlgc}. Euclidean distance formula is used in order to evaluate proximity between vectors of foods $f_i$ and $f_j$.
 \\
 \indent Let $f_i$ = \{$f_{i1}$, $f_{i2}$, $f_{i3}$, ... $f_{iL}$\} and $f_j$ = \{$f_{j1}$, $f_{j2}$, $f_{j3}$, ... $f_{jL}$\} be contextualized representation vector of food $f_i$ and $f_j$, respectively\cite*{9775081}. Similarity between $f_i$ and $f_j$ is calculated using Eucledian distance formula given as\cite*{9775081, oulu_tdlgc}:
-\begin{equation*} Sim\left({f_{i},f_{j}}\right)=1-\left({\sqrt {\sum _{l=1}^{L}\left({f_{il}-f_{jl}}\right)^{2}}}\right). \tag{5}\end{equation*}
+\begin{equation*} sim\left({f_{i},f_{j}}\right)=1-\left({\sqrt {\sum _{l=1}^{L}\left({f_{il}-f_{jl}}\right)^{2}}}\right). \tag{5}\end{equation*}
 where $f_{il}$ denotes l - th dimension of the contextualized representations vector of the food $f_i$.
 
 \subsection{Food Clustering}
@@ -116,4 +116,4 @@ After performing both user-based rating prediction and food-based rating predict
 \begin{equation*}
     p_{i}\left({u}\right)=\beta p_{i}^{u-based}+\left({1-\beta }\right) p_{i}^{f-based}. \tag{7}
 \end{equation*}
-where $p_i^{u-based}$(u) and $p_i^{f-based}$(u) denotes user-based prediction and food-based prediction on food $f_i$ for user $u$, respectively\cite*{9775081, oulu_tdlgc}. Parameter $\beta$ controls whether user-based or food-based prediction value has a higher priority in final outcome. A higher value of $\beta$ means user-based rating prediction was given a higher priority in influencing the final outcome, while a lower value means food-based rating prediction was given higher priority.
+where $p_i^{u-based}$(u) and $p_i^{f-based}$(u) denotes user-based prediction and food-based prediction on food $f_i$ for user $u$ respectively\cite*{9775081, oulu_tdlgc}. Parameter $\beta$ controls whether user-based or food-based prediction value has a higher priority in final outcome. A higher value of $\beta$ means user-based rating prediction was given a higher priority in influencing the final outcome, while a lower value means food-based rating prediction was given higher priority.
